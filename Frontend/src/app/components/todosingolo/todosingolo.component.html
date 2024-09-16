@@ -1,0 +1,35 @@
+<div class="todo-item" [ngClass]="{ 'completed': todo.completed, 'expired': todo.expired}">
+    <div class="checkbox-wrapper">
+        <input type="checkbox" [checked]="todo.completed" (change)="ChangeCompleted()">
+    </div>
+    <div class="todo-content">
+        <span>{{ todo.title }}</span>
+        <span *ngIf="todo.expired"> - Expired</span>
+        <div class="due-date" *ngIf="todo.dueDate">Expiring Date: {{ todo.dueDate | date }}</div>
+        <div>Created By: {{ todo.createdBy.fullName }}</div>
+        <img *ngIf="todo.createdBy && todo.createdBy.picture" [src]="todo.createdBy.picture" class="img">
+        <div *ngIf="todo.assignedTo">Assigned To: {{ todo.assignedTo.fullName }}</div>
+        <img *ngIf="todo.assignedTo && todo.assignedTo.picture" [src]="todo.assignedTo.picture" class="img">
+        <button class="btn btn-lg btn-primary" (click)="open(todoModal)">Assign todo</button>
+    </div>
+</div>
+
+<ng-template #todoModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Assign todo</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="assignedTo">Assigned To</label>
+        <select id="assignedTo" class="form-select" formControlName="assignedTo">
+          <option *ngFor="let user of users" [value]="user.id">{{user.fullName}}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('Cancel click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

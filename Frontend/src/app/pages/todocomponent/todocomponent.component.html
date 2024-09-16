@@ -1,0 +1,46 @@
+<div class="todo-page">
+  <h1>TODO</h1>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <button class="btn btn-lg btn-primary" (click)="open(todoModal)">Add Todo</button>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" (change)="ShowCompleted($event)" id="showCompleted">
+      <label class="form-check-label" for="showCompleted">Show also completed todos</label>
+    </div>
+  </div>
+
+  <div class="todo-list">
+    <app-todosingolo *ngFor="let todo of todos" [todo]="todo"></app-todosingolo>
+  </div>
+</div>
+
+
+<ng-template #todoModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Add todo:</h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="title">Title</label>
+        <input id="title" class="form-control" formControlName="title" placeholder="Enter to-do title" required>
+      </div>
+      <div class="mb-3">
+        <label for="dueDate">Data di scadenza</label>
+        <input id="dueDate" type="date" class="form-control" formControlName="dueDate">
+      </div>
+      <div class="mb-3">
+        <label for="assignedTo">Assigned To</label>
+        <select formControlName="assignedTo" id="assignedTo">
+          <option *ngFor="let user of users" [ngValue]="user.id">{{user.fullName}}</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-outline-secondary"
+          (click)="modal.dismiss('Cancel click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+  

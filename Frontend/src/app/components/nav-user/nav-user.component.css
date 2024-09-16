@@ -1,0 +1,65 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+}
+
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  padding: 10px;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+
+.nav-user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  transition: transform 0.3s;
+}
+
+.nav-link:hover .nav-user-avatar {
+  transform: scale(1.1);
+}
+
+
+.nav-item[ngbDropdown].show .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+
+.navbar-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .nav-link {
+      padding: 8px;
+      font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,16 @@
+.todo-item.expired{
+    background-color: #E6D705;
+}
+
+.todo-item.completed{
+    background-color: #29FF29;
+}
+
+.todo-item{
+    background-color: #99FFFF;
+}
+
+.img {
+    width: 25px;
+    height: 259x;
+}
